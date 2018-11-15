@@ -15,33 +15,30 @@ namespace GoL.V1
         public bool underPop { get; set; }
         public bool overPop { get; set; }
 
-        private const int Height = 15;
-        private const int Width = 15;
-
         public bool UnderPop(UpdateCell[,] grid, int x, int y)
         {
             int liveCells = 0;
-            if (x < Height - 1 && y < Width - 1)
+            if (x < grid.GetLength(0) - 1 && y < grid.GetLength(1) - 1)
             {
                 if (grid[x + 1, y + 1].State == true)
                     liveCells++;
             }
-            if (x < Height - 1)
+            if (x < grid.GetLength(0) - 1)
             {
                 if (grid[x + 1, y].State == true)
                     liveCells++;
             }
-            if (y < Width - 1)
+            if (y < grid.GetLength(1) - 1)
             {
                 if (grid[x, y + 1].State == true)
                     liveCells++;
             }
-            if (x < Height - 1 && y > 0)
+            if (x < grid.GetLength(0) - 1 && y > 0)
             {
                 if (grid[x + 1, y - 1].State == true)
                     liveCells++;
             }
-            if (x > 0 && y < Width - 1)
+            if (x > 0 && y < grid.GetLength(1) - 1)
             {
                 if (grid[x - 1, y + 1].State == true)
                     liveCells++;
@@ -73,27 +70,27 @@ namespace GoL.V1
         public bool AliveCell(UpdateCell[,] grid, int x, int y)
         {
             int liveCells = 0;
-            if (x < Height - 1 && y < Width - 1)
+            if (x < grid.GetLength(0) - 1 && y < grid.GetLength(1) - 1)
             {
                 if (grid[x + 1, y + 1].State == true)
                     liveCells++;
             }
-            if (x < Height - 1)
+            if (x < grid.GetLength(0) - 1)
             {
                 if (grid[x + 1, y].State == true)
                     liveCells++;
             }
-            if (y < Width - 1)
+            if (y < grid.GetLength(1) - 1)
             {
                 if (grid[x, y + 1].State == true)
                     liveCells++;
             }
-            if (x < Height - 1 && y > 0)
+            if (x < grid.GetLength(0) - 1 && y > 0)
             {
                 if (grid[x + 1, y - 1].State == true)
                     liveCells++;
             }
-            if (x > 0 && y < Width - 1)
+            if (x > 0 && y < grid.GetLength(1) - 1)
             {
                 if (grid[x - 1, y + 1].State == true)
                     liveCells++;
@@ -125,27 +122,27 @@ namespace GoL.V1
         public bool OverPop(UpdateCell[,] grid, int x, int y)
         {
             int liveCells = 0;
-            if (x < Height - 1 && y < Width - 1)
+            if (x < grid.GetLength(0) - 1 && y < grid.GetLength(1) - 1)
             {
                 if (grid[x + 1, y + 1].State == true)
                     liveCells++;
             }
-            if (x < Height - 1)
+            if (x < grid.GetLength(0) - 1)
             {
                 if (grid[x + 1, y].State == true)
                     liveCells++;
             }
-            if (y < Width - 1)
+            if (y < grid.GetLength(1) - 1)
             {
                 if (grid[x, y + 1].State == true)
                     liveCells++;
             }
-            if (x < Height - 1 && y > 0)
+            if (x < grid.GetLength(0) - 1 && y > 0)
             {
                 if (grid[x + 1, y - 1].State == true)
                     liveCells++;
             }
-            if (x > 0 && y < Width - 1)
+            if (x > 0 && y < grid.GetLength(1) - 1)
             {
                 if (grid[x - 1, y + 1].State == true)
                     liveCells++;
@@ -177,27 +174,27 @@ namespace GoL.V1
         public bool ReviveCell(UpdateCell[,] grid, int x, int y)
         {
             int liveCells = 0;
-            if (x < Height - 1 && y < Width - 1)
+            if (x < grid.GetLength(0) - 1 && y < grid.GetLength(1) - 1)
             {
                 if (grid[x + 1, y + 1].State == true)
                     liveCells++;
             }
-            if (x < Height - 1)
+            if (x < grid.GetLength(0) - 1)
             {
                 if (grid[x + 1, y].State == true)
                     liveCells++;
             }
-            if (y < Width - 1)
+            if (y < grid.GetLength(1) - 1)
             {
                 if (grid[x, y + 1].State == true)
                     liveCells++;
             }
-            if (x < Height - 1 && y > 0)
+            if (x < grid.GetLength(0) - 1 && y > 0)
             {
                 if (grid[x + 1, y - 1].State == true)
                     liveCells++;
             }
-            if (x > 0 && y < Width - 1)
+            if (x > 0 && y < grid.GetLength(1) - 1)
             {
                 if (grid[x - 1, y + 1].State == true)
                     liveCells++;

@@ -8,8 +8,8 @@ namespace GoL.V1
 {
     class UpdateGrid
     {
-        private const int Height = 15;
-        private const int Width = 15;
+        private const int Height = 20;
+        private const int Width = 20;
         private UpdateCell[,] originalGrid = new UpdateCell[Height, Width];
         private UpdateCell[,] newGrid = new UpdateCell[Height, Width];
         private string cell = "  ";
@@ -27,7 +27,7 @@ namespace GoL.V1
                 ApplyRulesToOldGrid();
                 ApplyChangesToNewGrid();
                 originalGrid = newGrid;
-                System.Threading.Thread.Sleep(200);
+                System.Threading.Thread.Sleep(100);
             }
         }
 
