@@ -8,14 +8,49 @@ namespace GoL.V1
 {
     class UpdateCell
     {
-        public bool State { get; set; }
-        public int Age { get; set; }
-        public bool Revive { get; set; }
-        public bool Survive { get; set; }
-        public bool underPop { get; set; }
-        public bool overPop { get; set; }
+        private int age;
+        public int Age
+        {
+            get => age;
+            set => age = value;
+        }
 
-        public bool UnderPop(UpdateCell[,] grid, int x, int y)
+        private bool state;
+        public bool State
+        {
+            get => state;
+            set => state = value;
+        }
+
+        private bool underPop;
+        public bool UnderPop
+        {
+            get => underPop;
+            set => underPop = value;
+        }
+
+        private bool survive;
+        public bool Survive
+        {
+            get => survive;
+            set => survive = value;
+        }
+
+        private bool overPop;
+        public bool OverPop
+        {
+            get => overPop;
+            set => overPop = value;
+        }
+
+        private bool revive;
+        public bool Revive
+        {
+            get => revive;
+            set => revive = value;
+        }
+
+        public bool UnderPopCell(UpdateCell[,] grid, int x, int y)
         {
             int liveCells = 0;
             if (x < grid.GetLength(0) - 1 && y < grid.GetLength(1) - 1)
@@ -67,7 +102,8 @@ namespace GoL.V1
                 return false;
             }
         }
-        public bool AliveCell(UpdateCell[,] grid, int x, int y)
+
+        public bool SurviveCell(UpdateCell[,] grid, int x, int y)
         {
             int liveCells = 0;
             if (x < grid.GetLength(0) - 1 && y < grid.GetLength(1) - 1)
@@ -119,7 +155,8 @@ namespace GoL.V1
                 return false;
             }
         }
-        public bool OverPop(UpdateCell[,] grid, int x, int y)
+
+        public bool OverPopCell(UpdateCell[,] grid, int x, int y)
         {
             int liveCells = 0;
             if (x < grid.GetLength(0) - 1 && y < grid.GetLength(1) - 1)
@@ -171,6 +208,7 @@ namespace GoL.V1
                 return false;
             }
         }
+
         public bool ReviveCell(UpdateCell[,] grid, int x, int y)
         {
             int liveCells = 0;

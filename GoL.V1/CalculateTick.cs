@@ -8,8 +8,8 @@ namespace GoL.V1
 {
     class UpdateGrid
     {
-        private const int Height = 20;
-        private const int Width = 20;
+        private const int Height = 25;
+        private const int Width = 25;
         private UpdateCell[,] originalGrid = new UpdateCell[Height, Width];
         private UpdateCell[,] newGrid = new UpdateCell[Height, Width];
         private string cell = "  ";
@@ -39,17 +39,17 @@ namespace GoL.V1
                 {
                     if (originalGrid[i, k].State == true)
                     {
-                        if (uc.UnderPop(originalGrid, i, k) == true)
+                        if (uc.UnderPopCell(originalGrid, i, k) == true)
                         {
-                            newGrid[i, k].underPop = uc.UnderPop(originalGrid, i, k);
+                            newGrid[i, k].UnderPop = uc.UnderPopCell(originalGrid, i, k);
                         }
-                        else if (uc.AliveCell(originalGrid, i, k) == true)
+                        else if (uc.SurviveCell(originalGrid, i, k) == true)
                         {
-                            newGrid[i, k].Survive = uc.AliveCell(originalGrid, i, k);
+                            newGrid[i, k].Survive = uc.SurviveCell(originalGrid, i, k);
                         }
-                        else if (uc.OverPop(originalGrid, i, k) == true)
+                        else if (uc.OverPopCell(originalGrid, i, k) == true)
                         {
-                            newGrid[i, k].overPop = uc.OverPop(originalGrid, i, k);
+                            newGrid[i, k].OverPop = uc.OverPopCell(originalGrid, i, k);
                         }
                     }
                     else
@@ -69,10 +69,10 @@ namespace GoL.V1
             {
                 for (int k = 0; k < newGrid.GetLength(1); k++)
                 {
-                    if (newGrid[i, k].underPop == true)
+                    if (newGrid[i, k].UnderPop == true)
                     {
                         newGrid[i, k].State = false;
-                        newGrid[i, k].underPop = false;
+                        newGrid[i, k].UnderPop = false;
                         newGrid[i, k].Age = 0;
                     }
                     else if (newGrid[i, k].Survive == true)
@@ -81,10 +81,10 @@ namespace GoL.V1
                         newGrid[i, k].Survive = false;
                         newGrid[i, k].Age = originalGrid[i, k].Age + 1;
                     }
-                    else if (newGrid[i, k].overPop == true)
+                    else if (newGrid[i, k].OverPop == true)
                     {
                         newGrid[i, k].State = false;
-                        newGrid[i, k].overPop = false;
+                        newGrid[i, k].OverPop = false;
                         newGrid[i, k].Age = 0;
                     }
                     if (newGrid[i, k].Revive == true)
