@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GoLApp"
+             x:Class="GoLApp.MainPage"
+             x:Subclass="UpdateCell"
+             >
+
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <!-- Place new controls here -->
+        <Label Text="Welcome to Xamarin.Forms!" x:Name="Label"/>
+        <Button Text="Click me!" Clicked="Button_Clicked" x:Name="Button"/>
+        <Slider ValueChanged="Slider_ValueChanged" Style="Flat" x:Name="Slider"/>
+        <StackLayout >
+            <local:Cell 
+                WidthRequest="400"
+                HeightRequest="800"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Tapped="Tapped_Event"
+                Style="Single"
+                />
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

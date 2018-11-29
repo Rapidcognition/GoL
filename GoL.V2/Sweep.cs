@@ -4,143 +4,81 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GoL.V1
+namespace GoL.V2
 {
-    class UpdateGrid
+    class Sweep
     {
-        private const int Height = 15;
-        private const int Width = 15;
-        private UpdateCell[,] originalGrid = new UpdateCell[Height, Width];
-        private UpdateCell[,] newGrid = new UpdateCell[Height, Width];
-        private string cell = "  ";
-        UpdateCell uc = new UpdateCell();
-
+        public const int height = 15;
+        public const int width = 15;
+        public const string cube = "  ";
+        public Cell cell = new Cell();
+        public Cell[,] originalGrid = new Cell[height, width];
+        public Cell[,] newGrid = new Cell[height, width];
+        public bool running = true;
+        
+        public Sweep()
+        {
+            Run();
+        }
         public void Run()
         {
-            InitalizeGrid();
             Console.CursorVisible = false;
-            bool running = true;
-            while (running)
+            InitalizeGrid();
+            while(running)
             {
                 Console.Clear();
+                ApplyRules();
                 PrintGrid();
-                ApplyRulesToOldGrid();
-                ApplyChangesToNewGrid();
                 originalGrid = newGrid;
                 System.Threading.Thread.Sleep(100);
             }
         }
 
-        public void ApplyRulesToOldGrid()
+        public void ApplyRules()
         {
             for (int i = 0; i < originalGrid.GetLength(0); i++)
             {
                 for (int k = 0; k < originalGrid.GetLength(1); k++)
                 {
-                    if (originalGrid[i, k].State == true)
-                    {
-                        if (uc.UnderPopCell(originalGrid, i, k) == true)
-                        {
-                            newGrid[i, k].UnderPop = uc.UnderPopCell(originalGrid, i, k);
-                        }
-                        else if (uc.SurviveCell(originalGrid, i, k) == true)
-                        {
-                            newGrid[i, k].Survive = uc.SurviveCell(originalGrid, i, k);
-                        }
-                        else if (uc.OverPopCell(originalGrid, i, k) == true)
-                        {
-                            newGrid[i, k].OverPop = uc.OverPopCell(originalGrid, i, k);
-                        }
-                    }
-                    else
-                    {
-                        if (uc.ReviveCell(originalGrid, i, k) == true)
-                        {
-                            newGrid[i, k].Revive = uc.ReviveCell(originalGrid, i, k);
-                        }
-                    }
+                    newGrid[i, k].IsAlive = cell.Get(originalGrid, i, k);
                 }
             }
         }
 
-        public void ApplyChangesToNewGrid()
-        {
-            for (int i = 0; i < newGrid.GetLength(0); i++)
-            {
-                for (int k = 0; k < newGrid.GetLength(1); k++)
-                {
-                    if (newGrid[i, k].UnderPop == true)
-                    {
-                        newGrid[i, k].State = false;
-                        newGrid[i, k].UnderPop = false;
-                        newGrid[i, k].Age = 0;
-                    }
-                    else if (newGrid[i, k].Survive == true)
-                    {
-                        newGrid[i, k].State = true;
-                        newGrid[i, k].Survive = false;
-                        newGrid[i, k].Age = originalGrid[i, k].Age + 1;
-                    }
-                    else if (newGrid[i, k].OverPop == true)
-                    {
-                        newGrid[i, k].State = false;
-                        newGrid[i, k].OverPop = false;
-                        newGrid[i, k].Age = 0;
-                    }
-                    if (newGrid[i, k].Revive == true)
-                    {
-                        newGrid[i, k].State = true;
-                        newGrid[i, k].Revive = false;
-                        newGrid[i, k].Age = 0;
-                    }
-                }
-            }
-        }
-
-        public void PrintGrid()
+        private void PrintGrid()
         {
             for (int i = 0; i < originalGrid.GetLength(0); i++)
             {
                 for (int k = 0; k < originalGrid.GetLength(1); k++)
                 {
-                    if (originalGrid[i, k].State == true)
+                    if(originalGrid[i,k].IsAlive == true)
                     {
-                        if (originalGrid[i, k].Age < 5)
-                        {
-                            PrintCell(Console.BackgroundColor = ConsoleColor.DarkGreen);
-                        }
-                        else
-                        {
-                            PrintCell(Console.BackgroundColor = ConsoleColor.DarkGray);
-                        }
+                        Console.BackgroundColor = ConsoleColor.DarkGreen;
+                        Console.Write(cube);
+                        Console.BackgroundColor = ConsoleColor.Black;
                     }
                     else
                     {
-                        PrintCell(Console.BackgroundColor = ConsoleColor.Black);
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.Write(cube);
                     }
                 }
                 Console.WriteLine();
             }
         }
 
-        public void PrintCell(ConsoleColor cell)
-        {
-            Console.Write(this.cell);
-            Console.BackgroundColor = ConsoleColor.Black;
-        }
-
         public void InitalizeGrid()
         {
             Random rnd = new Random();
-            for (int i = 0; i < Height; i++)
+            for (int i = 0; i < height; i++)
             {
-                for (int k = 0; k < Width; k++)
+                for (int k = 0; k < width; k++)
                 {
-                    originalGrid[i, k] = new UpdateCell
+                    originalGrid[i, k] = new Cell
                     {
-                        State = Convert.ToBoolean(rnd.Next(0, 2)),
+                        IsAlive = Convert.ToBoolean(rnd.Next(0, 2)),
                     };
-                    newGrid[i, k] = new UpdateCell();
+                    newGrid[i, k] = new Cell();
                 }
             }
 
