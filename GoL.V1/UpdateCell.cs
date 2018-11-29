@@ -50,47 +50,128 @@ namespace GoL.V1
             set => revive = value;
         }
 
-        public bool UnderPopCell(UpdateCell[,] grid, int x, int y)
+
+        public bool UnderPopCell(UpdateCell[,] grid, int y, int x)
         {
             int liveCells = 0;
-            if (x < grid.GetLength(0) - 1 && y < grid.GetLength(1) - 1)
+
+            //Test area for connecting the grid on all sides.
+
+
+            // Logic for bottom right hand corner.
+            //-------------------------------------
+            if (y >= grid.GetLength(0) - 1 && x >= grid.GetLength(1) - 1)
             {
-                if (grid[x + 1, y + 1].State == true)
+                if (grid[y - (grid.GetLength(0) - 1), x - (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[y - (grid.GetLength(0) - 1), x - (grid.GetLength(1) - 2)].State == true)
+                    liveCells++;
+                if (grid[y - (grid.GetLength(0) - 2), x - (grid.GetLength(1) - 1)].State == true)
                     liveCells++;
             }
-            if (x < grid.GetLength(0) - 1)
+            //-------------------------------------
+
+
+            // Logic for bottom left hand corner.
+            //-------------------------------------
+            if (y >= grid.GetLength(0) - 1 && x <= 0)
             {
-                if (grid[x + 1, y].State == true)
+                if (grid[(grid.GetLength(0) - 1), (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[0, 0].State == true)
+                    liveCells++;
+                if (grid[0, (grid.GetLength(1) - 1)].State == true)
                     liveCells++;
             }
-            if (y < grid.GetLength(1) - 1)
+            //------------------------------------
+
+
+            // Logic for upper left hand corner.
+            //-------------------------------------
+            if (y <= 0 && x <= 0)
             {
-                if (grid[x, y + 1].State == true)
+                if (grid[0, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, 0].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, grid.GetLength(1) - 1].State == true)
                     liveCells++;
             }
-            if (x < grid.GetLength(0) - 1 && y > 0)
+            //-------------------------------------
+
+
+            // Logic for upper right hand corner.
+            //-------------------------------------
+            if (y <= 0 && x >= grid.GetLength(1) - 1)
             {
-                if (grid[x + 1, y - 1].State == true)
+                if (grid[0, 0].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, 0].State == true)
                     liveCells++;
             }
-            if (x > 0 && y < grid.GetLength(1) - 1)
+            //-------------------------------------
+
+
+            if (y > 1 && x > 1 && y < grid.GetLength(0) - 2 && x < grid.GetLength(1) - 2)
             {
-                if (grid[x - 1, y + 1].State == true)
+                if (grid[grid.GetLength(0) - 1, x - 1].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, x].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, x + 1].State == true)
+                    liveCells++;
+                if (grid[y, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[y - 1, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[y + 1, grid.GetLength(1) - 1].State == true)
                     liveCells++;
             }
-            if (x > 0 && y > 0)
+
+            // End of test area
+
+
+
+            if (y < grid.GetLength(0) - 1 && x < grid.GetLength(1) - 1)
             {
-                if (grid[x - 1, y - 1].State == true)
+                if (grid[y + 1, x + 1].State == true)
                     liveCells++;
             }
-            if (x > 0)
+            if (y < grid.GetLength(0) - 1)
             {
-                if (grid[x - 1, y].State == true)
+                if (grid[y + 1, x].State == true)
+                    liveCells++;
+            }
+            if (x < grid.GetLength(1) - 1)
+            {
+                if (grid[y, x + 1].State == true)
+                    liveCells++;
+            }
+            if (y < grid.GetLength(0) - 1 && x > 0)
+            {
+                if (grid[y + 1, x - 1].State == true)
+                    liveCells++;
+            }
+            if (y > 0 && x < grid.GetLength(1) - 1)
+            {
+                if (grid[y - 1, x + 1].State == true)
+                    liveCells++;
+            }
+            if (y > 0 && x > 0)
+            {
+                if (grid[y - 1, x - 1].State == true)
                     liveCells++;
             }
             if (y > 0)
             {
-                if (grid[x, y - 1].State == true)
+                if (grid[y - 1, x].State == true)
+                    liveCells++;
+            }
+            if (x > 0)
+            {
+                if (grid[y, x - 1].State == true)
                     liveCells++;
             }
             if (liveCells < 2)
@@ -103,9 +184,92 @@ namespace GoL.V1
             }
         }
 
+
+
+        // Main area of testing SurviveCell
+
         public bool SurviveCell(UpdateCell[,] grid, int x, int y)
         {
             int liveCells = 0;
+
+            //Test area for connecting the grid on all sides.
+
+
+            // Logic for bottom right hand corner.
+            //-------------------------------------
+            if (y >= grid.GetLength(0) - 1 && x >= grid.GetLength(1) - 1)
+            {
+                if (grid[y - (grid.GetLength(0) - 1), x - (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[y - (grid.GetLength(0) - 1), x - (grid.GetLength(1) - 2)].State == true)
+                    liveCells++;
+                if (grid[y - (grid.GetLength(0) - 2), x - (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+            }
+            //-------------------------------------
+
+
+            // Logic for bottom left hand corner.
+            //-------------------------------------
+            if (y >= grid.GetLength(0) - 1 && x <= 0)
+            {
+                if (grid[(grid.GetLength(0) - 1), (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[0, 0].State == true)
+                    liveCells++;
+                if (grid[0, (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+            }
+            //------------------------------------
+
+
+            // Logic for upper left hand corner.
+            //-------------------------------------
+            if (y <= 0 && x <= 0)
+            {
+                if (grid[0, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, 0].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+            }
+            //-------------------------------------
+
+
+            // Logic for upper right hand corner.
+            //-------------------------------------
+            if (y <= 0 && x >= grid.GetLength(1) - 1)
+            {
+                if (grid[0, 0].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, 0].State == true)
+                    liveCells++;
+            }
+            //-------------------------------------
+
+
+            if (y > 1 && x > 1 && y < grid.GetLength(0) - 2 && x < grid.GetLength(1) - 2)
+            {
+                if (grid[grid.GetLength(0) - 1, x - 1].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, x ].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, x + 1].State == true)
+                    liveCells++;
+                if (grid[ y , grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[y - 1, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[y + 1, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+            }
+
+            // End of test area
+
+
             if (x < grid.GetLength(0) - 1 && y < grid.GetLength(1) - 1)
             {
                 if (grid[x + 1, y + 1].State == true)
@@ -159,6 +323,86 @@ namespace GoL.V1
         public bool OverPopCell(UpdateCell[,] grid, int x, int y)
         {
             int liveCells = 0;
+
+
+            //Test area for connecting the grid on all sides.
+
+
+            // Logic for bottom right hand corner.
+            //-------------------------------------
+            if (y >= grid.GetLength(0) - 1 && x >= grid.GetLength(1) - 1)
+            {
+                if (grid[y - (grid.GetLength(0) - 1), x - (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[y - (grid.GetLength(0) - 1), x - (grid.GetLength(1) - 2)].State == true)
+                    liveCells++;
+                if (grid[y - (grid.GetLength(0) - 2), x - (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+            }
+            //-------------------------------------
+
+
+            // Logic for bottom left hand corner.
+            //-------------------------------------
+            if (y >= grid.GetLength(0) - 1 && x <= 0)
+            {
+                if (grid[(grid.GetLength(0) - 1), (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[0, 0].State == true)
+                    liveCells++;
+                if (grid[0, (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+            }
+            //------------------------------------
+
+
+            // Logic for upper left hand corner.
+            //-------------------------------------
+            if (y <= 0 && x <= 0)
+            {
+                if (grid[0, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, 0].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+            }
+            //-------------------------------------
+
+
+            // Logic for upper right hand corner.
+            //-------------------------------------
+            if (y <= 0 && x >= grid.GetLength(1) - 1)
+            {
+                if (grid[0, 0].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, 0].State == true)
+                    liveCells++;
+            }
+            //-------------------------------------
+
+
+            if (y > 1 && x > 1 && y < grid.GetLength(0) - 2 && x < grid.GetLength(1) - 2)
+            {
+                if (grid[grid.GetLength(0) - 1, x - 1].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, x].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, x + 1].State == true)
+                    liveCells++;
+                if (grid[y, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[y - 1, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[y + 1, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+            }
+
+            // End of test area
+
+
             if (x < grid.GetLength(0) - 1 && y < grid.GetLength(1) - 1)
             {
                 if (grid[x + 1, y + 1].State == true)
@@ -212,6 +456,86 @@ namespace GoL.V1
         public bool ReviveCell(UpdateCell[,] grid, int x, int y)
         {
             int liveCells = 0;
+
+            //Test area for connecting the grid on all sides.
+
+
+            // Logic for bottom right hand corner.
+            //-------------------------------------
+            if (y >= grid.GetLength(0) - 1 && x >= grid.GetLength(1) - 1)
+            {
+                if (grid[y - (grid.GetLength(0) - 1), x - (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[y - (grid.GetLength(0) - 1), x - (grid.GetLength(1) - 2)].State == true)
+                    liveCells++;
+                if (grid[y - (grid.GetLength(0) - 2), x - (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+            }
+            //-------------------------------------
+
+
+            // Logic for bottom left hand corner.
+            //-------------------------------------
+            if (y >= grid.GetLength(0) - 1 && x <= 0)
+            {
+                if (grid[(grid.GetLength(0) - 1), (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[0, 0].State == true)
+                    liveCells++;
+                if (grid[0, (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+            }
+            //------------------------------------
+
+
+            // Logic for upper left hand corner.
+            //-------------------------------------
+            if (y <= 0 && x <= 0)
+            {
+                if (grid[0, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, 0].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+            }
+            //-------------------------------------
+
+
+            // Logic for upper right hand corner.
+            //-------------------------------------
+            if (y <= 0 && x >= grid.GetLength(1) - 1)
+            {
+                if (grid[0, 0].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, 0].State == true)
+                    liveCells++;
+            }
+            //-------------------------------------
+
+
+            if (y > 1 && x > 1 && y < grid.GetLength(0) - 2 && x < grid.GetLength(1) - 2)
+            {
+                if (grid[grid.GetLength(0) - 1, x - 1].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, x].State == true)
+                    liveCells++;
+                if (grid[grid.GetLength(0) - 1, x + 1].State == true)
+                    liveCells++;
+                if (grid[y, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[y - 1, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[y + 1, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+            }
+
+            // End of test area
+
+
+
             if (x < grid.GetLength(0) - 1 && y < grid.GetLength(1) - 1)
             {
                 if (grid[x + 1, y + 1].State == true)

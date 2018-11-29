@@ -144,10 +144,9 @@ namespace GoL.V1
                 }
             }
 
-            /*
-            originalGrid[0, 0].State = false;
-            originalGrid[0, 1].State = false;
-            originalGrid[0, 2].State = false;
+            originalGrid[0, 0].State = true;
+            originalGrid[0, 1].State = true;
+            originalGrid[0, 2].State = true;
             originalGrid[0, 3].State = false;
             originalGrid[0, 4].State = false;
             originalGrid[0, 5].State = false;
@@ -289,8 +288,8 @@ namespace GoL.V1
             originalGrid[13, 8].State = false;
             originalGrid[13, 9].State = false;
 
-            originalGrid[14, 0].State = false;
-            originalGrid[14, 1].State = false;
+            originalGrid[14, 0].State = true;
+            originalGrid[14, 1].State = true;
             originalGrid[14, 2].State = false;
             originalGrid[14, 3].State = false;
             originalGrid[14, 4].State = false;
@@ -299,7 +298,6 @@ namespace GoL.V1
             originalGrid[14, 7].State = false;
             originalGrid[14, 8].State = false;
             originalGrid[14, 9].State = false;
-            */
 
         }
     }
