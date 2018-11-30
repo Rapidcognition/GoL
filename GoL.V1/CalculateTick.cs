@@ -8,8 +8,8 @@ namespace GoL.V1
 {
     class UpdateGrid
     {
-        private const int Height = 15;
-        private const int Width = 15;
+        private const int Height = 17;
+        private const int Width = 17;
         private UpdateCell[,] originalGrid = new UpdateCell[Height, Width];
         private UpdateCell[,] newGrid = new UpdateCell[Height, Width];
         private string cell = "  ";

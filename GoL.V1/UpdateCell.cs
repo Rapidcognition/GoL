@@ -50,7 +50,6 @@ namespace GoL.V1
             set => revive = value;
         }
 
-
         public bool UnderPopCell(UpdateCell[,] grid, int y, int x)
         {
             int liveCells = 0;
@@ -220,7 +219,6 @@ namespace GoL.V1
             }
         }
 
-        // Main area of testing SurviveCell
         public bool SurviveCell(UpdateCell[,] grid, int y, int x)
         {
             int liveCells = 0;
