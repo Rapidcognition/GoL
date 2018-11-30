@@ -229,7 +229,7 @@ namespace GoL.V1
 
             // Logic for bottom right hand corner.
             //-------------------------------------
-            if (x >= grid.GetLength(0) - 1 && y >= grid.GetLength(1) - 1)
+            if (y >= grid.GetLength(0) - 1 && x >= grid.GetLength(1) - 1)
             {
                 if (grid[grid.GetLength(0) - 1, 0].State == true)
                     liveCells++;
@@ -243,7 +243,7 @@ namespace GoL.V1
 
             // Logic for bottom left hand corner.
             //-------------------------------------
-            if (x >= grid.GetLength(0) - 1 && y <= 0)
+            if (y >= grid.GetLength(0) - 1 && x <= 0)
             {
                 if (grid[(grid.GetLength(0) - 1), (grid.GetLength(1) - 1)].State == true)
                     liveCells++;
@@ -257,7 +257,7 @@ namespace GoL.V1
 
             // Logic for upper left hand corner.
             //-------------------------------------
-            if (x <= 0 && y <= 0)
+            if (y <= 0 && x <= 0)
             {
                 if (grid[0, grid.GetLength(1) - 1].State == true)
                     liveCells++;
@@ -271,7 +271,7 @@ namespace GoL.V1
 
             // Logic for upper right hand corner.
             //-------------------------------------
-            if (x <= 0 && y >= grid.GetLength(1) - 1)
+            if (y <= 0 && x >= grid.GetLength(1) - 1)
             {
                 if (grid[0, 0].State == true)
                     liveCells++;
@@ -283,54 +283,54 @@ namespace GoL.V1
             //-------------------------------------
 
 
-            // Logic for looking from top side of square to bottom side.
-            //--------------------------------------
-            if (x == 0 && y > 0 && y < grid.GetLength(1) - 1 )
-            {
-                if (grid[grid.GetLength(0) - 1, y - 1].State == true)
-                    liveCells++;
-                if (grid[grid.GetLength(0) - 1, y].State == true)
-                    liveCells++;
-                if (grid[grid.GetLength(0) - 1, y + 1].State == true)
-                    liveCells++;
-            }
-            //--------------------------------------
-
-            // Logic for looking from bottom side of square to top side.
-            //--------------------------------------
-            if (x == grid.GetLength(0) - 1 && y > 0 && y < grid.GetLength(1) - 1 )
-            {
-                if (grid[0, y - 1].State == true)
-                    liveCells++;
-                if (grid[0, y].State == true)
-                    liveCells++;
-                if (grid[0, y + 1].State == true)
-                    liveCells++;
-            }
-            //--------------------------------------
-
-            // Logic for looking from left side of square to right side.
+            // Logic for looking from top side of square to bottom side
             //--------------------------------------
             if (y == 0 && x > 0 && x < grid.GetLength(1) - 1)
             {
-                if (grid[x - 1, grid.GetLength(1) - 1].State == true)
+                if (grid[grid.GetLength(0) - 1, x - 1].State == true)
                     liveCells++;
-                if (grid[x, grid.GetLength(1) - 1].State == true)
+                if (grid[grid.GetLength(0) - 1, x].State == true)
                     liveCells++;
-                if (grid[x + 1, grid.GetLength(1) - 1].State == true)
+                if (grid[grid.GetLength(0) - 1, x + 1].State == true)
                     liveCells++;
             }
             //--------------------------------------
 
-            // Logic for looking from right side of square to the left side.
+            // Logic for looking from bottom side of square to top side
             //--------------------------------------
-            if (y == grid.GetLength(1) - 1 && x > 0 && x < grid.GetLength(0) - 1)
+            if (y == grid.GetLength(0) - 1 && x > 0 && x < grid.GetLength(1) - 1)
             {
-                if (grid[x - 1, y - (grid.GetLength(1) - 1)].State == true)
+                if (grid[0, x - 1].State == true)
                     liveCells++;
-                if (grid[x, y - (grid.GetLength(1) - 1)].State == true)
+                if (grid[0, x].State == true)
                     liveCells++;
-                if (grid[x + 1, y - (grid.GetLength(1) - 1)].State == true)
+                if (grid[0, x + 1].State == true)
+                    liveCells++;
+            }
+            //--------------------------------------
+
+            // Logic for looking from left side of square to right side
+            //--------------------------------------
+            if (x == 0 && y > 0 && y < grid.GetLength(1) - 1)
+            {
+                if (grid[y - 1, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[y, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+                if (grid[y + 1, grid.GetLength(1) - 1].State == true)
+                    liveCells++;
+            }
+            //--------------------------------------
+
+            // Logic for looking from right side of square to the left side
+            //--------------------------------------
+            if (x == grid.GetLength(1) - 1 && y > 0 && y < grid.GetLength(0) - 1)
+            {
+                if (grid[y - 1, x - (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[y, x - (grid.GetLength(1) - 1)].State == true)
+                    liveCells++;
+                if (grid[y + 1, x - (grid.GetLength(1) - 1)].State == true)
                     liveCells++;
             }
             //--------------------------------------
@@ -392,12 +392,11 @@ namespace GoL.V1
         {
             int liveCells = 0;
 
-
             //Test area for connecting the grid on all sides.
 
             // Logic for bottom right hand corner.
             //-------------------------------------
-            if (x >= grid.GetLength(0) - 1 && y >= grid.GetLength(1) - 1)
+            if (y >= grid.GetLength(0) - 1 && x >= grid.GetLength(1) - 1)
             {
                 if (grid[grid.GetLength(0) - 1, 0].State == true)
                     liveCells++;
@@ -411,7 +410,7 @@ namespace GoL.V1
 
             // Logic for bottom left hand corner.
             //-------------------------------------
-            if (x >= grid.GetLength(0) - 1 && y <= 0)
+            if (y >= grid.GetLength(0) - 1 && x <= 0)
             {
                 if (grid[(grid.GetLength(0) - 1), (grid.GetLength(1) - 1)].State == true)
                     liveCells++;
@@ -425,7 +424,7 @@ namespace GoL.V1
 
             // Logic for upper left hand corner.
             //-------------------------------------
-            if (x <= 0 && y <= 0)
+            if (y <= 0 && x <= 0)
             {
                 if (grid[0, grid.GetLength(1) - 1].State == true)
                     liveCells++;
@@ -439,7 +438,7 @@ namespace GoL.V1
 
             // Logic for upper right hand corner.
             //-------------------------------------
-            if (x <= 0 && y >= grid.GetLength(1) - 1)
+            if (y <= 0 && x >= grid.GetLength(1) - 1)
             {
                 if (grid[0, 0].State == true)
                     liveCells++;
@@ -453,52 +452,52 @@ namespace GoL.V1
 
             // Logic for looking from top side of square to bottom side
             //--------------------------------------
-            if (x == 0 && y > 0 && y < grid.GetLength(1) - 1)
+            if (y == 0 && x > 0 && x < grid.GetLength(1) - 1)
             {
-                if (grid[grid.GetLength(0) - 1, y - 1].State == true)
+                if (grid[grid.GetLength(0) - 1, x - 1].State == true)
                     liveCells++;
-                if (grid[grid.GetLength(0) - 1, y].State == true)
+                if (grid[grid.GetLength(0) - 1, x].State == true)
                     liveCells++;
-                if (grid[grid.GetLength(0) - 1, y + 1].State == true)
+                if (grid[grid.GetLength(0) - 1, x + 1].State == true)
                     liveCells++;
             }
             //--------------------------------------
 
             // Logic for looking from bottom side of square to top side
             //--------------------------------------
-            if (x == grid.GetLength(0) - 1 && y > 0 && y < grid.GetLength(1) - 1)
+            if (y == grid.GetLength(0) - 1 && x > 0 && x < grid.GetLength(1) - 1)
             {
-                if (grid[0, y - 1].State == true)
+                if (grid[0, x - 1].State == true)
                     liveCells++;
-                if (grid[0, y].State == true)
+                if (grid[0, x].State == true)
                     liveCells++;
-                if (grid[0, y + 1].State == true)
+                if (grid[0, x + 1].State == true)
                     liveCells++;
             }
             //--------------------------------------
 
             // Logic for looking from left side of square to right side
             //--------------------------------------
-            if (y == 0 && x > 0 && x < grid.GetLength(1) - 1)
+            if (x == 0 && y > 0 && y < grid.GetLength(1) - 1)
             {
-                if (grid[x - 1, grid.GetLength(1) - 1].State == true)
+                if (grid[y - 1, grid.GetLength(1) - 1].State == true)
                     liveCells++;
-                if (grid[x, grid.GetLength(1) - 1].State == true)
+                if (grid[y, grid.GetLength(1) - 1].State == true)
                     liveCells++;
-                if (grid[x + 1, grid.GetLength(1) - 1].State == true)
+                if (grid[y + 1, grid.GetLength(1) - 1].State == true)
                     liveCells++;
             }
             //--------------------------------------
 
             // Logic for looking from right side of square to the left side
             //--------------------------------------
-            if (y == grid.GetLength(1) - 1 && x > 0 && x < grid.GetLength(0) - 1)
+            if (x == grid.GetLength(1) - 1 && y > 0 && y < grid.GetLength(0) - 1)
             {
-                if (grid[x - 1, y - (grid.GetLength(1) - 1)].State == true)
+                if (grid[y - 1, x - (grid.GetLength(1) - 1)].State == true)
                     liveCells++;
-                if (grid[x, y - (grid.GetLength(1) - 1)].State == true)
+                if (grid[y, x - (grid.GetLength(1) - 1)].State == true)
                     liveCells++;
-                if (grid[x + 1, y - (grid.GetLength(1) - 1)].State == true)
+                if (grid[y + 1, x - (grid.GetLength(1) - 1)].State == true)
                     liveCells++;
             }
             //--------------------------------------
@@ -561,12 +560,11 @@ namespace GoL.V1
         {
             int liveCells = 0;
 
-
             //Test area for connecting the grid on all sides.
 
             // Logic for bottom right hand corner.
             //-------------------------------------
-            if (x >= grid.GetLength(0) - 1 && y >= grid.GetLength(1) - 1)
+            if (y >= grid.GetLength(0) - 1 && x >= grid.GetLength(1) - 1)
             {
                 if (grid[grid.GetLength(0) - 1, 0].State == true)
                     liveCells++;
@@ -580,7 +578,7 @@ namespace GoL.V1
 
             // Logic for bottom left hand corner.
             //-------------------------------------
-            if (x >= grid.GetLength(0) - 1 && y <= 0)
+            if (y >= grid.GetLength(0) - 1 && x <= 0)
             {
                 if (grid[(grid.GetLength(0) - 1), (grid.GetLength(1) - 1)].State == true)
                     liveCells++;
@@ -594,7 +592,7 @@ namespace GoL.V1
 
             // Logic for upper left hand corner.
             //-------------------------------------
-            if (x <= 0 && y <= 0)
+            if (y <= 0 && x <= 0)
             {
                 if (grid[0, grid.GetLength(1) - 1].State == true)
                     liveCells++;
@@ -608,7 +606,7 @@ namespace GoL.V1
 
             // Logic for upper right hand corner.
             //-------------------------------------
-            if (x <= 0 && y >= grid.GetLength(1) - 1)
+            if (y <= 0 && x >= grid.GetLength(1) - 1)
             {
                 if (grid[0, 0].State == true)
                     liveCells++;
@@ -622,52 +620,52 @@ namespace GoL.V1
 
             // Logic for looking from top side of square to bottom side
             //--------------------------------------
-            if (x == 0 && y > 0 && y < grid.GetLength(1) - 1)
+            if (y == 0 && x > 0 && x < grid.GetLength(1) - 1)
             {
-                if (grid[grid.GetLength(0) - 1, y - 1].State == true)
+                if (grid[grid.GetLength(0) - 1, x - 1].State == true)
                     liveCells++;
-                if (grid[grid.GetLength(0) - 1, y].State == true)
+                if (grid[grid.GetLength(0) - 1, x].State == true)
                     liveCells++;
-                if (grid[grid.GetLength(0) - 1, y + 1].State == true)
+                if (grid[grid.GetLength(0) - 1, x + 1].State == true)
                     liveCells++;
             }
             //--------------------------------------
 
             // Logic for looking from bottom side of square to top side
             //--------------------------------------
-            if (x == grid.GetLength(0) - 1 && y > 0 && y < grid.GetLength(1) - 1)
+            if (y == grid.GetLength(0) - 1 && x > 0 && x < grid.GetLength(1) - 1)
             {
-                if (grid[0, y - 1].State == true)
+                if (grid[0, x - 1].State == true)
                     liveCells++;
-                if (grid[0, y].State == true)
+                if (grid[0, x].State == true)
                     liveCells++;
-                if (grid[0, y + 1].State == true)
+                if (grid[0, x + 1].State == true)
                     liveCells++;
             }
             //--------------------------------------
 
             // Logic for looking from left side of square to right side
             //--------------------------------------
-            if (y == 0 && x > 0 && x < grid.GetLength(1) - 1)
+            if (x == 0 && y > 0 && y < grid.GetLength(1) - 1)
             {
-                if (grid[x - 1, grid.GetLength(1) - 1].State == true)
+                if (grid[y - 1, grid.GetLength(1) - 1].State == true)
                     liveCells++;
-                if (grid[x, grid.GetLength(1) - 1].State == true)
+                if (grid[y, grid.GetLength(1) - 1].State == true)
                     liveCells++;
-                if (grid[x + 1, grid.GetLength(1) - 1].State == true)
+                if (grid[y + 1, grid.GetLength(1) - 1].State == true)
                     liveCells++;
             }
             //--------------------------------------
 
             // Logic for looking from right side of square to the left side
             //--------------------------------------
-            if (y == grid.GetLength(1) - 1 && x > 0 && x < grid.GetLength(0) - 1)
+            if (x == grid.GetLength(1) - 1 && y > 0 && y < grid.GetLength(0) - 1)
             {
-                if (grid[x - 1, y - (grid.GetLength(1) - 1)].State == true)
+                if (grid[y - 1, x - (grid.GetLength(1) - 1)].State == true)
                     liveCells++;
-                if (grid[x, y - (grid.GetLength(1) - 1)].State == true)
+                if (grid[y, x - (grid.GetLength(1) - 1)].State == true)
                     liveCells++;
-                if (grid[x + 1, y - (grid.GetLength(1) - 1)].State == true)
+                if (grid[y + 1, x - (grid.GetLength(1) - 1)].State == true)
                     liveCells++;
             }
             //--------------------------------------
