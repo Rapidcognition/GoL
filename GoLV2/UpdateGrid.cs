@@ -67,7 +67,7 @@ namespace GoLV2
                         newGrid[i, k].Revive = false;
                         newGrid[i, k].Age = 0;
                     }
-                    else if (newGrid[i, k].Survive == false)
+                    else
                     {
                         newGrid[i, k].State = false;
                         newGrid[i, k].Age = 0;
@@ -122,7 +122,7 @@ namespace GoLV2
                     newGrid[i, k] = new UpdateCell();
                 }
             }
-
+            /*
             originalGrid[0, 0].State = true;
             originalGrid[0, 1].State = true;
             originalGrid[0, 2].State = true;
@@ -277,7 +277,7 @@ namespace GoLV2
             originalGrid[14, 7].State = false;
             originalGrid[14, 8].State = false;
             originalGrid[14, 9].State = false;
-
+            */
         }
     }
 }
