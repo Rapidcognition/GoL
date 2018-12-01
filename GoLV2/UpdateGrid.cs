@@ -9,7 +9,7 @@ namespace GoLV2
     class UpdateGrid
     {
         private const int Height = 22;
-        private const int Width = 22;
+        private const int Width = 25;
         private UpdateCell[,] originalGrid = new UpdateCell[Height, Width];
         private UpdateCell[,] newGrid = new UpdateCell[Height, Width];
         private string cell = "  ";
@@ -65,7 +65,7 @@ namespace GoLV2
                     {
                         newGrid[i, k].State = true;
                         newGrid[i, k].Revive = false;
-                        newGrid[i, k].Age = 0;
+                        newGrid[i, k].Age = 1;
                     }
                     else
                     {
@@ -95,7 +95,7 @@ namespace GoLV2
                     }
                     else
                     {
-                        PrintCell(Console.BackgroundColor = ConsoleColor.Black);
+                        Console.Write(this.cell);
                     }
                 }
                 Console.WriteLine();
