@@ -126,7 +126,7 @@ namespace GoLV2
 
             // Logic for looking from left side of square to right side
             //--------------------------------------
-            if (x == 0 && y > 0 && y < grid.GetLength(1) - 1)
+            if (x == 0 && y > 0 && y < grid.GetLength(0) - 1)
             {
                 if (grid[y - 1, grid.GetLength(1) - 1].State == true)
                     liveCells++;
@@ -193,7 +193,11 @@ namespace GoLV2
                 if (grid[y, x - 1].State == true)
                     liveCells++;
             }
-            if (liveCells == 2 || liveCells == 3)
+            if (grid[y, x].State == true && liveCells == 2 || liveCells == 3)
+            {
+                return true;
+            }
+            else if(grid[y, x].State == false && liveCells == 3)
             {
                 return true;
             }
@@ -293,7 +297,7 @@ namespace GoLV2
 
             // Logic for looking from left side of square to right side
             //--------------------------------------
-            if (x == 0 && y > 0 && y < grid.GetLength(1) - 1)
+            if (x == 0 && y > 0 && y < grid.GetLength(0) - 1)
             {
                 if (grid[y - 1, grid.GetLength(1) - 1].State == true)
                     liveCells++;

@@ -140,7 +140,7 @@ namespace GoL.V1
 
             // Logic for looking from left side of square to right side
             //--------------------------------------
-            if (x == 0 && y > 0 && y < grid.GetLength(1) - 1)
+            if (x == 0 && y > 0 && y < grid.GetLength(0) - 1)
             {
                 if (grid[y - 1, grid.GetLength(1) - 1].State == true)
                     liveCells++;
@@ -308,7 +308,7 @@ namespace GoL.V1
 
             // Logic for looking from left side of square to right side
             //--------------------------------------
-            if (x == 0 && y > 0 && y < grid.GetLength(1) - 1)
+            if (x == 0 && y > 0 && y < grid.GetLength(0) - 1)
             {
                 if (grid[y - 1, grid.GetLength(1) - 1].State == true)
                     liveCells++;
@@ -388,7 +388,6 @@ namespace GoL.V1
         public bool OverPopCell(UpdateCell[,] grid, int y, int x)
         {
             int liveCells = 0;
-
             //Test area for connecting the grid on all sides.
 
             // Logic for looking from bottom right hand corner to upper left hand corner.
@@ -475,7 +474,7 @@ namespace GoL.V1
 
             // Logic for looking from left side of square to right side
             //--------------------------------------
-            if (x == 0 && y > 0 && y < grid.GetLength(1) - 1)
+            if (x == 0 && y > 0 && y < grid.GetLength(0) - 1)
             {
                 if (grid[y - 1, grid.GetLength(1) - 1].State == true)
                     liveCells++;
@@ -500,7 +499,6 @@ namespace GoL.V1
             //--------------------------------------
 
             // End of test area
-
 
 
             if (y < grid.GetLength(0) - 1 && x < grid.GetLength(1) - 1)
@@ -643,7 +641,7 @@ namespace GoL.V1
 
             // Logic for looking from left side of square to right side
             //--------------------------------------
-            if (x == 0 && y > 0 && y < grid.GetLength(1) - 1)
+            if (x == 0 && y > 0 && y < grid.GetLength(0) - 1)
             {
                 if (grid[y - 1, grid.GetLength(1) - 1].State == true)
                     liveCells++;
