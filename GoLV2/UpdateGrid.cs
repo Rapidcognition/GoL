@@ -8,8 +8,8 @@ namespace GoLV2
 {
     class UpdateGrid
     {
-        private const int Height = 22;
-        private const int Width = 25;
+        private const int Height = 20;
+        private const int Width = 20;
         private UpdateCell[,] originalGrid = new UpdateCell[Height, Width];
         private UpdateCell[,] newGrid = new UpdateCell[Height, Width];
         private string cell = "  ";
@@ -22,12 +22,12 @@ namespace GoLV2
             bool running = true;
             while (running)
             {
-                Console.Clear();
                 PrintGrid();
                 ApplyRulesToNewGrid();
                 ApplyChangesToNewGrid();
                 originalGrid = newGrid;
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(30);
+                Console.SetCursorPosition(0, 0);
             }
         }
 
